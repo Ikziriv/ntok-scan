@@ -21,3 +21,6 @@ Desktop.ini
 
 # ECC memory vault (unreviewed context, never committed)
 .ncc/memory/
+
+# Devin agent local config and learned data
+.devin/
