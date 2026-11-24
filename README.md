@@ -17,6 +17,10 @@ Local-first: no cloud account, no telemetry — your accounts and targets never 
 <p><strong>⚠ Scan only systems you own or have permission to test.</strong></p>
 </div>
 
+<p align="center">
+<img src="docs/screenshots/dashboard.png" alt="NTOK SCAN web console — scan dashboard with live index stats" width="960">
+</p>
+
 <!-- demo asset to record: split screen — `ntok scan --web` CLI left,
      ntok-web port map lighting up right. 20–30s loop → docs/demo.gif -->
 
@@ -486,6 +490,27 @@ Tool findings (nmap scripts, nuclei) render on the detail page and in the
 normal/CSV/HTML exports. History rows have a confirm-guarded delete that
 removes the entry and its report files. The visual system lives in
 `DESIGN.md`.
+
+<div align="center">
+<table>
+  <tr>
+    <td><img src="docs/screenshots/scan-detail.png" width="460" alt="Live port map lighting up as probes land"><br><sub><b>Live port map</b> — every probe lights up as it lands</sub></td>
+    <td><img src="docs/screenshots/web-intel.png" width="460" alt="Website intelligence — tech fingerprint, TLS, attribution"><br><sub><b>Website intelligence</b> — tech fingerprint, TLS, attribution</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/search.png" width="460" alt="Index search — Shodan-style field:value DSL"><br><sub><b>Index search</b> — Shodan-style <code>field:value</code> over everything seen</sub></td>
+    <td><img src="docs/screenshots/compare.png" width="460" alt="Scan compare — drift between two scans"><br><sub><b>Drift view</b> — one-click diff between any two scans</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/agent.png" width="460" alt="Recon agent — plain-language queries over the index"><br><sub><b>Recon agent</b> — plain-language answers over the local index</sub></td>
+    <td><img src="docs/screenshots/settings.png" width="460" alt="Settings — AI providers, API tokens, security"><br><sub><b>Settings</b> — AI providers, API tokens, account security</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/login.png" width="460" alt="Sign-in — 3D topology stage, argon2id accounts"><br><sub><b>Sign in</b> — local accounts, argon2id, optional 2FA</sub></td>
+    <td><img src="docs/screenshots/guide.png" width="460" alt="Built-in user guide"><br><sub><b>User guide</b> — full docs served inside the app</sub></td>
+  </tr>
+</table>
+</div>
 
 ## Deploying on a public host
 
