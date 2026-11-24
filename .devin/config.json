@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(**)",
+      "Exec(git)",
+      "Exec(cargo fmt)",
+      "Exec(cargo clippy)",
+      "Exec(cargo test)",
+      "Exec(cargo build)",
+      "Exec(cargo check)",
+      "Exec(cargo run)",
+      "Exec(ecc memory)",
+      "Exec(agentshield)"
+    ],
+    "deny": [
+      "Exec(git push --force)",
+      "Exec(git config)"
+    ]
+  }
+}

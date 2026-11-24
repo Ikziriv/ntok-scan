@@ -1,0 +1,29 @@
+# ntok-web on a bare VM (Hetzner etc.) — app plus Caddy for automatic HTTPS.
+#   cp .env.example .env   # optional NTOK_* tuning; register at /register after deploy
+#   edit Caddyfile         # set your domain
+#   docker compose up -d --build
+services:
+  ntok:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ntok_data:/data
+    # For raw -sS/ICMP scans: build with
+    #   --features ntok-core/privileged and add cap_add: [NET_RAW]
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  ntok_data:
+  caddy_data:
+  caddy_config:

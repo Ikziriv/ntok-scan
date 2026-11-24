@@ -1,0 +1,8 @@
+/target
+/.git
+/reports
+/docs
+/.github
+.env*
+nul
+t.obj

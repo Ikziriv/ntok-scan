@@ -1,0 +1,64 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/ntok-core",
+    "crates/ntok-cli",
+    "crates/ntok-web",
+    "crates/ntok-store",
+    "crates/ntok-desktop",
+    "crates/ntok-mcp",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Ikziriv/ntok-scan"
+
+[workspace.dependencies]
+ntok-core = { path = "crates/ntok-core" }
+ntok-store = { path = "crates/ntok-store" }
+rusqlite = { version = "0.32", features = ["bundled"] }
+tokio = { version = "1", features = ["rt-multi-thread", "net", "sync", "time", "io-util", "signal", "macros", "fs", "process"] }
+tokio-util = { version = "0.7", features = ["rt"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { version = "4", features = ["derive"] }
+ipnet = "2"
+futures = "0.3"
+governor = "0.10"
+pnet = "0.35"
+regex = "1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "gzip", "brotli"] }
+quick-xml = { version = "0.37", features = ["serialize"] }
+url = "2"
+tl = "0.7"
+rustls = { version = "0.23", features = ["aws_lc_rs"] }
+tokio-rustls = "0.26"
+x509-parser = "0.16"
+time = { version = "0.3", features = ["formatting"] }
+criterion = "0.5"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "symbols"
+
+# The fingerprint engine spends its dev-profile time inside regex
+# compile/match, AC scanning and DOM parsing — all dependency code.
+# Optimize just those crates so `cargo run` scans are representative
+# without turning every edit into a release build.
+[profile.dev.package.regex]
+opt-level = 3
+[profile.dev.package.regex-automata]
+opt-level = 3
+[profile.dev.package.aho-corasick]
+opt-level = 3
+[profile.dev.package.memchr]
+opt-level = 3
+[profile.dev.package.tl]
+opt-level = 3

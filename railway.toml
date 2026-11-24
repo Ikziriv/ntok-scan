@@ -1,0 +1,10 @@
+# ntok-web on Railway — build from the Dockerfile, restart on crash.
+# Dashboard still needed: a volume mounted at /data, plus env vars —
+# NTOK_AI_* (optional). Railway injects PORT; register at /register after deploy
+# at runtime, which ntok-web binds automatically.
+[build]
+  builder = "DOCKERFILE"
+  dockerfilePath = "Dockerfile"
+
+[deploy]
+  restartPolicyType = "ON_FAILURE"

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NTOK SCAN — Discover. Analyze. Secure.</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --obs: #0B1220;
+      --obs-elev: #111C30;
+      --obs-line: rgba(148, 179, 219, .16);
+      --obs-fg: #F0F6FF;
+      --obs-muted: #7E95B6;
+      --sky: #45C4EC;
+      --err: #F28482;
+      --err-bg: #2B1315;
+      --err-line: #522427;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("fonts/inter-var.woff2") format("woff2") tech("variations");
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Work Sans";
+      src: url("fonts/work-sans-var.woff2") format("woff2") tech("variations");
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("fonts/ibm-plex-mono-500.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: var(--obs);
+      background-image:
+        linear-gradient(rgba(69, 196, 236, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(69, 196, 236, .045) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--obs-fg);
+      font: 400 13px/1.5 "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      display: grid;
+      place-items: center;
+      user-select: none;
+    }
+    .splash {
+      text-align: center;
+      padding: 36px 40px;
+      border-radius: 16px;
+      background: rgba(17, 28, 48, .72);
+      border: 1px solid var(--obs-line);
+      max-width: 420px;
+      width: calc(100% - 32px);
+    }
+    .mark {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      border-radius: 999px;
+      background: var(--obs);
+      border: 1px solid var(--obs-line);
+      display: grid;
+      place-items: center;
+      padding: 10px;
+    }
+    .mark svg { width: 100%; height: auto; display: block; }
+    .title {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+    .sub {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(69, 196, 236, .13);
+      border: 1px solid rgba(69, 196, 236, .3);
+      color: var(--sky);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .exp { color: var(--obs-muted); font-size: 12px; margin-top: 10px; }
+    .bar {
+      width: 196px;
+      height: 4px;
+      border-radius: 999px;
+      margin: 20px auto 12px;
+      background: rgba(148, 179, 219, .15);
+      overflow: hidden;
+    }
+    .bar i {
+      display: block;
+      height: 100%;
+      width: 42%;
+      border-radius: 999px;
+      background: var(--sky);
+      animation: slide 1.15s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+    }
+    .status {
+      font: 500 11px "IBM Plex Mono", ui-monospace, "Cascadia Mono", SFMono-Regular, Menlo, monospace;
+      color: var(--obs-muted);
+    }
+    .err-box {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--err-bg);
+      border: 1px solid var(--err-line);
+      color: var(--err);
+      font: 500 11.5px/1.5 "IBM Plex Mono", ui-monospace, "Cascadia Mono", SFMono-Regular, Menlo, monospace;
+      text-align: left;
+      user-select: text;
+      word-break: break-word;
+    }
+    @keyframes slide {
+      from { transform: translateX(-12%); }
+      to { transform: translateX(150%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bar i { animation: none; width: 100%; opacity: .65; }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash" role="status" aria-live="polite">
+    <div class="mark" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209 150">
+        <defs>
+          <linearGradient id="g0" gradientUnits="userSpaceOnUse" x1="20" y1="68" x2="0" y2="67"><stop offset="0" stop-color="#376AB3"/><stop offset="1" stop-color="#45C4EC"/></linearGradient>
+          <linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="75" y1="91" x2="47" y2="11"><stop offset="0" stop-color="#4C7CBE"/><stop offset="1" stop-color="#5F95CF"/></linearGradient>
+          <linearGradient id="g2" gradientUnits="userSpaceOnUse" x1="73" y1="149" x2="33" y2="92"><stop offset="0" stop-color="#3F6AB2"/><stop offset="1" stop-color="#4C7CBE"/></linearGradient>
+          <linearGradient id="g3" gradientUnits="userSpaceOnUse" x1="125" y1="39" x2="48" y2="10"><stop offset="0" stop-color="#409FD5"/><stop offset="1" stop-color="#45C6ED"/></linearGradient>
+          <linearGradient id="g4" gradientUnits="userSpaceOnUse" x1="187" y1="98" x2="121" y2="80"><stop offset="0" stop-color="#3B80C1"/><stop offset="1" stop-color="#40A1D6"/></linearGradient>
+          <linearGradient id="g5" gradientUnits="userSpaceOnUse" x1="91" y1="52" x2="134" y2="124"><stop offset="0" stop-color="#2A497B"/><stop offset="1" stop-color="#3A63AA"/></linearGradient>
+          <linearGradient id="g6" gradientUnits="userSpaceOnUse" x1="130" y1="89" x2="185" y2="142"><stop offset="0" stop-color="#3C67AF"/><stop offset="1" stop-color="#3E69B3"/></linearGradient>
+          <linearGradient id="g7" gradientUnits="userSpaceOnUse" x1="76" y1="38" x2="101" y2="94"><stop offset="0" stop-color="#25406B"/><stop offset="1" stop-color="#2E4F86"/></linearGradient>
+          <linearGradient id="g8" gradientUnits="userSpaceOnUse" x1="168" y1="51" x2="168" y2="3"><stop offset="0" stop-color="#295087"/><stop offset="1" stop-color="#3566AC"/></linearGradient>
+          <linearGradient id="g9" gradientUnits="userSpaceOnUse" x1="208" y1="117" x2="208" y2="50"><stop offset="0" stop-color="#193153"/><stop offset="1" stop-color="#295087"/></linearGradient>
+          <linearGradient id="g10" gradientUnits="userSpaceOnUse" x1="207" y1="123" x2="187" y2="140"><stop offset="0" stop-color="#3976BB"/><stop offset="1" stop-color="#3B80C1"/></linearGradient>
+        </defs>
+        <polygon points="34,23 33,118 70,148 75,147 76,71 160,149 177,148 207,123 208,26 206,20 177,1 171,0 168,3 167,78 84,0 63,0 47,10" fill="#4682B4"/>
+        <polygon points="6,61 0,67 0,75 6,81 13,81 18,78 20,68 17,63" fill="url(#g0)"/>
+        <polygon points="47,11 33,26 33,91 75,91 75,37" fill="url(#g1)"/>
+        <polygon points="33,92 33,118 73,149 75,92" fill="url(#g2)"/>
+        <polygon points="48,10 62,1 84,1 125,39 125,81" fill="url(#g3)"/>
+        <polygon points="124,40 187,98 186,141 121,80 126,81" fill="url(#g4)"/>
+        <polygon points="91,52 102,64 102,95 134,124 134,94" fill="url(#g5)"/>
+        <polygon points="130,89 135,94 134,123 159,148 176,148 185,142" fill="url(#g6)"/>
+        <polygon points="76,38 76,70 101,94 101,64" fill="url(#g7)"/>
+        <polygon points="169,6 185,7 206,21 207,51 168,51 168,3" fill="url(#g8)"/>
+        <polygon points="168,52 168,78 208,117 208,50" fill="url(#g9)"/>
+        <polygon points="188,99 187,140 207,123 207,117" fill="url(#g10)"/>
+      </svg>
+    </div>
+    <h1 class="title">NTOK SCAN</h1>
+    <div class="sub">Discover. Analyze. Secure.</div>
+    <div class="exp">Network Threat Observation &amp; Knowledge</div>
+    <div class="bar" id="boot-bar"><i></i></div>
+    <div class="status" id="boot-status">Starting local scanning engine…</div>
+    <div class="err-box" id="boot-error" role="alert"></div>
+  </div>
+  <script>
+    window.__ntokBootError = function (msg) {
+      var bar = document.getElementById("boot-bar");
+      var st = document.getElementById("boot-status");
+      var box = document.getElementById("boot-error");
+      if (bar) bar.style.display = "none";
+      if (st) st.textContent = "Engine failed to start";
+      if (box) { box.textContent = msg; box.style.display = "block"; }
+    };
+  </script>
+</body>
+</html>

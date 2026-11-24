@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  binaries:
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            target: aarch64-apple-darwin
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      # ntok-desktop is a Tauri app — wry needs webkit2gtk on Linux.
+      - name: Install Tauri system deps
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev
+
+      # Default features only — no `privileged` (Npcap/pnet) so the
+      # binaries run everywhere; raw scans stay a from-source option.
+      - run: cargo build --release --target ${{ matrix.target }} -p ntok-cli -p ntok-web -p ntok-desktop
+
+      - name: Package
+        shell: bash
+        run: |
+          mkdir -p dist
+          cd target/${{ matrix.target }}/release
+          case "${{ matrix.target }}" in
+            *windows*) tar -acf "../../../dist/ntok-${{ matrix.target }}.zip" ntok.exe ntok-web.exe ntok-desktop.exe ;;
+            *)         tar -czf "../../../dist/ntok-${{ matrix.target }}.tar.gz" ntok ntok-web ntok-desktop ;;
+          esac
+
+      # The extension is platform-independent — zip it once.
+      - name: Package browser extension
+        if: matrix.target == 'x86_64-unknown-linux-gnu'
+        shell: bash
+        run: |
+          mkdir -p dist
+          cd crates/ntok-extension && zip -r ../../dist/ntok-extension.zip .
+
+      - name: Checksums
+        shell: bash
+        run: cd dist && (sha256sum ntok-* || shasum -a 256 ntok-*) > SHA256SUMS
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*

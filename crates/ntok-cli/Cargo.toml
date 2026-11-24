@@ -1,0 +1,27 @@
+[package]
+name = "ntok-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "../../README.md"
+description = "nmap-style port scanner and recon engine in Rust — CLI"
+keywords = ["port-scanner", "nmap", "recon", "security", "network"]
+categories = ["command-line-utilities", "network-programming"]
+
+[[bin]]
+name = "ntok"
+path = "src/main.rs"
+
+[dependencies]
+ntok-core = { workspace = true }
+ntok-store = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+futures = { workspace = true }

@@ -1,0 +1,14 @@
+<!-- Merge into the generated Info.plist (or set in Xcode → target → Info).
+     NSAppTransportSecurity is needed only for http:// LAN targets; remove
+     once you serve HTTPS. UIAppFonts registers the bundled faces from
+     fonts/ (Inter, Work Sans — OFL); add the files to the app target too. -->
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+<key>UIAppFonts</key>
+<array>
+    <string>Inter.ttf</string>
+    <string>WorkSans.ttf</string>
+</array>

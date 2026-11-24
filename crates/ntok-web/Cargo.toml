@@ -1,0 +1,25 @@
+[package]
+name = "ntok-web"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "../../README.md"
+description = "live web UI for the ntok scanner — port map, web intel, reports"
+keywords = ["port-scanner", "nmap", "recon", "security", "network"]
+categories = ["network-programming", "visualization"]
+
+[[bin]]
+name = "ntok-web"
+path = "src/main.rs"
+
+[dependencies]
+ntok-core = { workspace = true }
+ntok-store = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+reqwest = { workspace = true }
+qrcode = { version = "0.14", default-features = false, features = ["svg"] }
+topcoat = "0.12"

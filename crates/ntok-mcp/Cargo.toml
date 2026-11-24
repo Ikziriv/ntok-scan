@@ -1,0 +1,39 @@
+[package]
+name = "ntok-mcp"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "MCP server exposing the ntok scan engine and local index to AI agents"
+keywords = ["mcp", "port-scanner", "nmap", "recon", "security"]
+categories = ["network-programming"]
+
+[[bin]]
+name = "ntok-mcp"
+path = "src/main.rs"
+
+[dependencies]
+ntok-core = { workspace = true }
+ntok-store = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+anyhow = { workspace = true }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+ipnet = { workspace = true }
+rmcp = { version = "3.11", features = [
+    "server",
+    "macros",
+    "schemars",
+    "transport-io",
+    "transport-streamable-http-server",
+    "transport-streamable-http-server-session",
+] }
+hyper = { version = "1", features = ["server", "http1"] }
+hyper-util = { version = "0.1", features = ["tokio"] }
+http-body-util = "0.1"
+http = "1"
+bytes = "1"

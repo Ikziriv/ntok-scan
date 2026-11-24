@@ -1,0 +1,49 @@
+[package]
+name = "ntok-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "../../README.md"
+description = "async nmap-style scanning engine: ports, service probes, web recon, reports"
+keywords = ["port-scanner", "nmap", "recon", "security", "network"]
+categories = ["network-programming"]
+
+[features]
+default = ["ai"]
+privileged = ["dep:pnet"]
+ai = []
+
+[dependencies]
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+ipnet = { workspace = true }
+futures = { workspace = true }
+governor = { workspace = true }
+quick-xml = { workspace = true }
+regex = { workspace = true }
+url = { workspace = true }
+tl = { workspace = true }
+rustls = { workspace = true }
+tokio-rustls = { workspace = true }
+x509-parser = { workspace = true }
+time = { workspace = true }
+pnet = { workspace = true, optional = true }
+reqwest = { workspace = true }
+aho-corasick = "1.1.5"
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["full"] }
+criterion = { workspace = true }
+
+[[bench]]
+name = "banner"
+harness = false
+
+[[bench]]
+name = "tech"
+harness = false

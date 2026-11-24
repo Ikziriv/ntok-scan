@@ -1,0 +1,23 @@
+# Rust build artifacts
+/target
+**/*.rs.bk
+
+# Runtime output (ntok-web writes scan reports here)
+reports/
+
+# Secrets / local env
+.env
+.env.*
+
+# Editors / OS noise
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini
+
+# Local junction shim — canonical content lives in .ncc/skills/
+.agents/
+
+# ECC memory vault (unreviewed context, never committed)
+.ncc/memory/

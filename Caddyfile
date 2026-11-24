@@ -1,0 +1,4 @@
+# your domain here — Caddy provisions TLS automatically
+ntok.example.com
+
+reverse_proxy ntok:8080

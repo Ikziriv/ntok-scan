@@ -1,0 +1,23 @@
+[package]
+name = "ntok-store"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "local searchable index of scan results — the Shodan half of ntok"
+keywords = ["port-scanner", "search", "sqlite", "recon", "network"]
+categories = ["network-programming"]
+
+[dependencies]
+ntok-core = { workspace = true }
+rusqlite = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+url = { workspace = true }
+argon2 = "0.6.0"
+sha2 = "0.11.1"
+getrandom = "0.4.3"
+hmac = "0.12"
+sha1 = "0.10"
+data-encoding = "2"
+serde_json = { workspace = true }

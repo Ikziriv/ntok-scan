@@ -1,0 +1,33 @@
+# ntok-web on Fly.io.
+#   fly launch           # adopts this config (rename app if the name is taken)
+#   fly volumes create ntok_data --size 1
+#   register at /register after deploy — first account wins
+#   fly deploy
+app = "ntok-web"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  HOST = "0.0.0.0"
+  PORT = "8080"
+  # Accounts live in the mounted volume's ntok.db — no secret env needed.
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # Suspend (not stop) when idle — RAM state survives, so an in-flight scan
+  # picks up where it left off. An active htmx poll keeps the machine awake.
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[mounts]]
+  source = "ntok_data"
+  destination = "/data"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory = "512mb"
